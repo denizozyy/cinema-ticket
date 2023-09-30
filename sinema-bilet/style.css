@@ -39,6 +39,9 @@ body {
 
 .row {
     display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
 }
 
 .screen {
@@ -74,4 +77,8 @@ body {
 p.text span {
     color: #f6eb6f;
 }
-
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
