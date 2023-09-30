@@ -3,27 +3,22 @@ const count = document.getElementById('count');
 const amount = document.getElementById('amount');
 const select = document.getElementById('movie');
 const seats = document.querySelectorAll('.seat:not(.reserved)');
-const movie2 = document.getElementById('movie2');
+const screen = document.querySelector('.screen');
+
 getFromLocalStorage();
 calculateTotal();
 
+function changeScreenSize(container, width, height) {
+    container.style.width = width;
+    container.style.height = height;
 
-function changeScreenSize(element, width, height) {
-    element.style.setProperty('width', width);
-    element.style.setProperty('height', height);
-}
+}; 
 
 function increaseSeats() {
-    const screen = document.querySelector('.screen');
-    const row = document.querySelector('.row');
+    const seat = document.querySelector('.row');
     const newRow = seat.cloneNode(true);
-    screen.appendChild(newRow);
+    container.appendChild(newRow);
 };
-
-movie2.addEventListener('click', function() {
-    changeScreenSize(screen, '100px', '120px');
-    increaseSeats();
-});
 
 container.addEventListener('click',function(e){
     if(e.target.classList.contains('seat') && !e.target.classList.contains('reserved')) {
@@ -33,8 +28,14 @@ container.addEventListener('click',function(e){
 });
 
 select.addEventListener('change', function(e) {
+    if (this.options[this.selectedIndex].text == 'Movie 2') {
+        changeScreenSize(screen, '350px', '120px');
+        increaseSeats();
+    };
+
     calculateTotal();
 });
+
 
 function calculateTotal() {
     const selectedSeats =  container.querySelectorAll('.seat.selected');
