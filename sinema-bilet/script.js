@@ -15,9 +15,10 @@ function changeScreenSize(container, width, height) {
 }; 
 
 function increaseSeats() {
-    const seat = document.querySelector('.row');
+    const seat = document.querySelector('#clone .row');
     const newRow = seat.cloneNode(true);
     container.appendChild(newRow);
+
 };
 
 container.addEventListener('click',function(e){
@@ -27,14 +28,20 @@ container.addEventListener('click',function(e){
     }
 });
 
+
 select.addEventListener('change', function(e) {
     if (this.options[this.selectedIndex].text == 'Movie 2') {
         changeScreenSize(screen, '350px', '120px');
         increaseSeats();
-    };
-
-    calculateTotal();
+    } else if(this.options[this.selectedIndex].text == 'Movie 1' || this.options[this.selectedIndex].text == 'Movie 3') {
+        changeScreenSize(screen, '100%', '65px');
+        var clone_el = document.querySelectorAll('#clone .row');
+        for (var i = 0; i < clone_el.length; i++) {
+            clone_el[i].parentNode.removeChild(clone_el[i]);
+        }
+}
 });
+
 
 
 function calculateTotal() {
