@@ -28,20 +28,17 @@ container.addEventListener('click',function(e){
     }
 });
 
-
 select.addEventListener('change', function(e) {
     if (this.options[this.selectedIndex].text == 'Movie 2') {
         changeScreenSize(screen, '350px', '120px');
         increaseSeats();
-    } else if(this.options[this.selectedIndex].text == 'Movie 1' || this.options[this.selectedIndex].text == 'Movie 3') {
+    } else {
         changeScreenSize(screen, '100%', '65px');
-        var clone_el = document.querySelectorAll('#clone .row');
-        for (var i = 0; i < clone_el.length; i++) {
-            clone_el[i].parentNode.removeChild(clone_el[i]);
-        }
-}
-});
+        container.lastChild.remove();
+    }
 
+    calculateTotal();
+});
 
 
 function calculateTotal() {
